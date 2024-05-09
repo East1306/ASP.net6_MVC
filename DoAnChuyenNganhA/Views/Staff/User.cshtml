@@ -6,6 +6,22 @@
 @{
     var input_name = "";
 }
+@section Scripts {
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Khi tài liệu đã được tải
+            $('#submitButton').click(function () {
+                // Khi nút có id 'btnGetValue' được click
+                var input_name = $('#searchName').val(); // Lấy giá trị từ thẻ input có id 'inputValue'
+                var url = "/Staff/User?name=" + input_name;
+                // Chuyển hướng đến URL đã tạo
+                window.location.href = url;
+            });
+        });
+    </script>
+}
 <div class="col-12">
     <div class="card">
         <div class="card-header">
@@ -13,17 +29,14 @@
 
             <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
-                    <input id="searchName" type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
+                    <input id="searchName" type="text" name="table_search" class="form-control float-right" placeholder="Search"/>
                     <div class="input-group-append">
-                        <button id="filterButton" value="@input_name" class="btn btn-default" href="~?name=@input_name">
-                       
+                        <button id="submitButton" class="btn btn-default">
                             <i class="fas fa-search">
-                             
-
-                            </i>
-                            
+                            </i> 
                         </button>
+                       
+                       
                     </div>
                 </div>
             </div>
@@ -72,18 +85,8 @@
             alert('Deleted');
         }
     }
-    function InputName { get; set; }
+
+
  
 </script>
 
-@section Scripts {
-    <script>
-        document.getElementById("filterButton").addEventListener("click", function () {
-            var name = @input_name; 
-            // Construct the new URL with the name parameter
-            var url = "?name=" + encodeURIComponent(name);
-            // Redirect to the new URL
-            window.location.href = url;
-        });
-    </script>
-}
